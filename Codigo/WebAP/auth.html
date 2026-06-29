@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelTime - Acceso</title>
+  <link rel="stylesheet" href="stylesAuth.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h1>TravelTime</h1>
+        <p>Predicción inteligente de tiempos de viaje</p>
+      </div>
+
+      <!-- Login -->
+      <div id="login-form-container">
+        <h2>Iniciar Sesión</h2>
+        <form id="login-form">
+          <input type="email" id="login-email" placeholder="Correo electrónico" required>
+          <input type="password" id="login-password" placeholder="Contraseña" required>
+          <button type="submit">Iniciar Sesión</button>
+        </form>
+        <p class="switch-text">¿No tienes cuenta? 
+          <a href="#" id="show-register">Regístrate aquí</a>
+        </p>
+      </div>
+
+      <!-- Register -->
+      <div id="register-form-container" class="hidden">
+        <h2>Crear Cuenta</h2>
+        <form id="register-form">
+          <input type="text" id="reg-name" placeholder="Nombre completo" required>
+          <input type="email" id="reg-email" placeholder="Correo electrónico" required>
+          <input type="password" id="reg-password" placeholder="Contraseña" required>
+          <button type="submit">Registrarse</button>
+        </form>
+        <p class="switch-text">¿Ya tienes cuenta? 
+          <a href="#" id="show-login">Inicia sesión</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="scriptAuth.js"></script>
+</body>
+</html>

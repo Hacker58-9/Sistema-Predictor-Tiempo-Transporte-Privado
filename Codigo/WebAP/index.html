@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelTime</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-brand">
+      <div class="brand-icon">🗺️</div>
+      <h1>Travel<span>Time</span></h1>
+    </div>
+    <button class="logout-btn" id="logout-btn">Cerrar sesión</button>
+  </div>
+
+  <div class="app-body">
+
+    <!-- MAP -->
+    <div class="map-wrap">
+      <div id="map"></div>
+      <div class="map-hint" id="map-hint">📍 Haz clic para fijar el <strong>origen</strong></div>
+      <div class="route-loading hidden" id="route-loading">
+        <span class="spinner"></span> Trazando ruta…
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <div class="sidebar-header">
+        <p class="sidebar-title">¿Cuánto tardarás en llegar?</p>
+        <p class="sidebar-sub">Haz clic en el mapa para marcar origen y destino, o busca una dirección.</p>
+      </div>
+
+      <!-- Address search -->
+      <div class="search-section">
+        <p class="section-label">🔍 Buscar dirección</p>
+        <div class="search-row">
+          <input type="text" class="search-input" id="search-input" placeholder="Ej: Av. España, Trujillo">
+          <button class="search-go-btn" id="search-btn">Buscar</button>
+        </div>
+        <div class="search-results" id="search-results"></div>
+      </div>
+
+      <!-- Point badges -->
+      <div class="points-grid">
+        <div class="point-badge active" id="badge-origin" onclick="setMode('origin')">
+          <div class="badge-label"><span class="badge-dot o"></span> Origen</div>
+          <div class="badge-coords" id="badge-orig-text">Sin seleccionar</div>
+        </div>
+        <div class="point-badge" id="badge-dest" onclick="setMode('destination')">
+          <div class="badge-label"><span class="badge-dot d"></span> Destino</div>
+          <div class="badge-coords" id="badge-dest-text">Sin seleccionar</div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- Form -->
+      <form id="prediction-form" autocomplete="off">
+        <div class="form-fields">
+
+          <div class="form-group">
+            <label class="form-label">Origen — Lat / Lon</label>
+            <div class="coords-grid">
+              <input type="number" class="coord-input" id="orig-lat" step="0.000001" placeholder="Latitud">
+              <input type="number" class="coord-input" id="orig-lon" step="0.000001" placeholder="Longitud">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Destino — Lat / Lon</label>
+            <div class="coords-grid">
+              <input type="number" class="coord-input" id="dest-lat" step="0.000001" placeholder="Latitud">
+              <input type="number" class="coord-input" id="dest-lon" step="0.000001" placeholder="Longitud">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">📅 Fecha y hora del viaje</label>
+            <input type="datetime-local" class="datetime-input" id="trip-datetime">
+          </div>
+
+          <button type="submit" class="predict-btn">🔮 Estimar tiempo de viaje</button>
+
+        </div>
+      </form>
+
+      <!-- Result -->
+      <div class="result-card hidden" id="result">
+        <p class="result-eyebrow">⏱ Tu viaje tomará aproximadamente</p>
+        <p class="result-duration" id="duration-text"></p>
+        <p class="result-unit" id="duration-unit"></p>
+        <p class="result-distance" id="distance-text"></p>
+        <div id="traffic-indicator"></div>
+        <p class="speed-note" id="speed-note"></p>
+        <button class="reset-btn" id="new-prediction">↩ Nueva estimación</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
